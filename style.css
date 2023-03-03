@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body{
+	font-family: 'Poppins', sans-serif;
+	min-height: 100vh;
+	background: rgb(7,6,4);
+	position: relative;
+	background-image: url(./assets/pattern.webp);
+	background-repeat: repeat;
+	background-size: 5rem 5rem;
+	background-color: #1B1B1B;
+	overflow: hidden;
+}
+
+:root{
+	--gradient-bg: radial-gradient(39.45% 44.95% at 50% 50%, rgba(154, 154, 154, 0.17) 0%, rgba(217, 217, 217, 0) 100%);
+	--shadow: 10px 10px 5px -3px rgba(0,0,0,0.75);
+}
+
+header{
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+}
+
+main{
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+	justify-content: center;
+	background: var(--gradient-bg)
+}
+
+.mirrors--container{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	flex-direction: column;
+	width: 100%;
+	max-width: 600px;
+	height: 100%;
+	max-height: 500px;
+}
+
+.mirror{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+	border-radius: .5rem;
+	box-shadow: var(--shadow);
+}
+
+.mirror.mirror-1, .mirror.mirror-1 video{
+	object-fit: cover;
+	width:  100%;
+	height: 100%;
+	min-height: 197px;
+	max-width: 194px;
+	max-height: 197px;
+}
+
+.mirror.mirror-2, .mirror.mirror-2 video{
+	object-fit: cover;
+	width:  100%;
+	height: 100%;
+	min-height: 291px;
+	max-width: 274px;
+	max-height: 291px;
+}
+
+.mirror.mirror-3, .mirror.mirror-3 video{
+	object-fit: cover;
+	width:  100%;
+	height: 100%;
+	min-height: 207px;
+	max-width: 322px;
+	max-height: 207px;
+	position: relative;
+}
+
+.frame{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	object-fit: cover;
+
+	background: rgba(255, 255, 255, 0.1);
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(1px);
+}
+
+.mirror.mirror-2::before, .mirror.mirror-3::before, .mirror.mirror-1::before{
+	height: 100px;
+	width: 2px;
+	background: rgba(255, 255, 255, .3);
+	content: '';
+	position: absolute;
+	z-index: 1;
+	transform: rotate(-45deg);
+}
+
+.mirror.mirror-2::after, .mirror.mirror-3::after, .mirror.mirror-1::after{
+	height: 50px;
+	width: 2px;
+	background: rgba(255, 255, 255, .3);
+	content: '';
+	position: absolute;
+	z-index: 1;
+	transform: translateX(10px) translateY(-5px) rotate(-45deg);
+}
+
+.mirror-2{ margin-left: 5rem; margin-top: 5rem;}
+.mirror-1{ margin-top: -5rem; margin-left: 5rem;}
+
+footer{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 50px;
+	color:white;
+	opacity: .5;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+footer a{
+	color: white;
+}
+
+.mirror-1{ animation: park-1 1.5s linear; }
+.mirror-2{ animation: park-2 1.5s linear; }
+.mirror-3{ animation: park-3 1.5s linear; }
+
+@keyframes park-1 {
+  0%   { transform: translate(1000px, 1000px) }
+  100% { transform: translate(0px) }
+}
+
+@keyframes park-2 {
+  0%   { transform: translate(-1000px, 1000px) }
+  100% { transform: translate(0px) }
+}
+
+@keyframes park-3 {
+  0%   { transform: translate(1000px, -1000px) }
+  100% { transform: translate(0px) }
+}
+
+@media only screen and (max-width: 768px) {
+	.mirrors--container{
+		display: flex;
+		flex-direction: column-reverse;
+		align-items: center;
+		justify-content: center;
+		gap: 2rem;
+		width: 100%;
+		height: 100%;
+		min-height: 100vh;
+	}
+
+	.mirror.mirror-2{ margin-left: 0rem; margin-top: 0rem; }
+	.mirror.mirror-1{ margin-left: 0rem; margin-top: 0rem; }
+}
